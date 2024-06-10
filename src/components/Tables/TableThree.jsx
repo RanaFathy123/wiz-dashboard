@@ -1,29 +1,51 @@
-
-
 const packageData = [
   {
-    name: 'Free package',
+    name: "Free package",
     price: 0.0,
     invoiceDate: `Jan 13,2023`,
-    status: 'Paid',
+    status: "Paid",
   },
   {
-    name: 'Standard Package',
+    name: "Standard Package",
     price: 59.0,
     invoiceDate: `Jan 13,2023`,
-    status: 'Paid',
+    status: "Paid",
   },
   {
-    name: 'Business Package',
+    name: "Business Package",
     price: 99.0,
     invoiceDate: `Jan 13,2023`,
-    status: 'Unpaid',
+    status: "Unpaid",
   },
   {
-    name: 'Standard Package',
+    name: "Standard Package",
     price: 59.0,
     invoiceDate: `Jan 13,2023`,
-    status: 'Pending',
+    status: "Pending",
+  },
+  {
+    name: "Standard Package",
+    price: 59.0,
+    invoiceDate: `Jan 13,2023`,
+    status: "Pending",
+  },
+  {
+    name: "Standard Package",
+    price: 59.0,
+    invoiceDate: `Jan 13,2023`,
+    status: "Pending",
+  },
+  {
+    name: "Standard Package",
+    price: 59.0,
+    invoiceDate: `Jan 13,2023`,
+    status: "Pending",
+  },
+  {
+    name: "Standard Package",
+    price: 59.0,
+    invoiceDate: `Jan 13,2023`,
+    status: "Pending",
   },
 ];
 
@@ -34,17 +56,32 @@ const TableThree = () => {
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-gray-2 text-right dark:bg-meta-4">
-              <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                Package
+              <th className="min-w-[200px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                اسم المشروع
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Invoice date
+                مبلغ المشروع
               </th>
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Status
+                كم المدفوع
               </th>
-              <th className="py-4 px-4 font-medium text-black dark:text-white">
-                Actions
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                كم باقي
+              </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                اسم العميل
+              </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                نوع المشروع
+              </th>
+              <th className="min-w-[200px] py-4 px-4 font-medium text-black dark:text-white">
+                تاريخ إنشاء المشروع
+              </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                مدير المشروع
+              </th>
+              <th className="py-4 px-4 font-medium text-black text-center dark:text-white">
+                أفعال{" "}
               </th>
             </tr>
           </thead>
@@ -55,7 +92,31 @@ const TableThree = () => {
                   <h5 className="font-medium text-black dark:text-white">
                     {packageItem.name}
                   </h5>
-                  <p className="text-sm">${packageItem.price}</p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p className="text-black dark:text-white">
+                    {packageItem.invoiceDate}
+                  </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p className="text-black dark:text-white">
+                    {packageItem.invoiceDate}
+                  </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p className="text-black dark:text-white">
+                    {packageItem.invoiceDate}
+                  </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p className="text-black dark:text-white">
+                    {packageItem.invoiceDate}
+                  </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <p className="text-black dark:text-white">
+                    {packageItem.invoiceDate}
+                  </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
@@ -65,18 +126,18 @@ const TableThree = () => {
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p
                     className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                      packageItem.status === 'Paid'
-                        ? 'bg-success text-success'
-                        : packageItem.status === 'Unpaid'
-                        ? 'bg-danger text-danger'
-                        : 'bg-warning text-warning'
+                      packageItem.status === "Paid"
+                        ? "bg-success text-success"
+                        : packageItem.status === "Unpaid"
+                        ? "bg-danger text-danger"
+                        : "bg-warning text-warning"
                     }`}
                   >
                     {packageItem.status}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <div className="flex items-center space-x-3.5">
+                  <div className="flex items-center  gap-3">
                     <button className="hover:text-primary">
                       <svg
                         className="fill-current"

@@ -87,7 +87,7 @@ const MultiSelect = ({ id }) => {
   return (
     <div className="relative z-50">
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-        Multiselect Dropdown
+       اضافة العملاء
       </label>
       <div>
         <select className="hidden" id={id}>
