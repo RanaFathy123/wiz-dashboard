@@ -1,29 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
-import TableThree from "../components/Tables/TableThree";
+import BlogsTableDesign from "../components/Tables/BlogsTableDesign";
 import DefaultLayout from "../layout/DefaultLayout";
+import TasksTableDesign from "../components/Tables/TasksTableDesign";
 
-const Tables = () => {
+const TasksTable = () => {
   const navigate = useNavigate();
-  const goToAddClients = () => {
-    navigate("/forms/form-elements");
+  const goToAddTask = () => {
+    navigate("/forms/tasks");
   };
   return (
     <DefaultLayout>
       <div className="flex justify-between">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-2"
-          onClick={goToAddClients}
+          onClick={goToAddTask}
         >
-          اضافة المشاريع
+          اضافة الاعمال
         </button>
-        <Breadcrumb pageName="جدول العملاء" />
+        <Breadcrumb pageName="جدول الاعمال" />
       </div>
       <div className="flex flex-col gap-10">
-        <TableThree />
+        <TasksTableDesign />
       </div>
     </DefaultLayout>
   );
 };
 
-export default Tables;
+export default TasksTable;

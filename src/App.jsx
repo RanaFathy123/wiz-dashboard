@@ -1,26 +1,32 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 // import Loader from './common/Loader';
-import MapOne from './components/Maps/MapOne';
-import PageTitle from './components/PageTitle';
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
-import Calendar from './pages/Calendar';
-import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
-import FormElements from './pages/Form/FormElements';
-import FormLayout from './pages/Form/FormLayout';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
-import Tables from './pages/Tables';
-import Alerts from './pages/UiElements/Alerts';
-import Buttons from './pages/UiElements/Buttons';
+import MapOne from "./components/Maps/MapOne";
+import PageTitle from "./components/PageTitle";
+import SignIn from "./pages/Authentication/SignIn";
+import SignUp from "./pages/Authentication/SignUp";
+import BlogsTable from "./pages/BlogsTable";
+import Calendar from "./pages/Calendar";
+import Chart from "./pages/Chart";
+import ECommerce from "./pages/Dashboard/ECommerce";
+import BlogsForm from "./pages/Form/BlogsForm";
+import FormLayout from "./pages/Form/FormLayout";
+import ProjectsForm from "./pages/Form/ProjectsForm";
+import ServiceForm from "./pages/Form/ServiceForm";
+import Profile from "./pages/Profile";
+import ProjectsTables from "./pages/ProjectsTables";
+import ServicesTable from "./pages/ServicesTable";
+import Settings from "./pages/Settings";
+import Alerts from "./pages/UiElements/Alerts";
+import Buttons from "./pages/UiElements/Buttons";
+import TasksForm from "./pages/Form/TasksForm";
+import TasksTable from "./pages/TasksTable";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
-console.log(loading);
+  console.log(loading);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,7 +56,7 @@ console.log(loading);
               <Calendar />
             </>
           }
-          />
+        />
         <Route
           path="/profile"
           element={
@@ -70,11 +76,38 @@ console.log(loading);
           }
         />
         <Route
-          path="/forms/form-elements"
+          path="/forms/projects"
           element={
             <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormElements />
+              <PageTitle title="Projects" />
+              <ProjectsForm />
+            </>
+          }
+        />
+        <Route
+          path="/forms/services"
+          element={
+            <>
+              <PageTitle title="Services" />
+              <ServiceForm />
+            </>
+          }
+        />
+        <Route
+          path="/forms/blogs"
+          element={
+            <>
+              <PageTitle title="Blogs" />
+              <BlogsForm />
+            </>
+          }
+        />
+        <Route
+          path="/forms/tasks"
+          element={
+            <>
+              <PageTitle title="Tasks" />
+              <TasksForm />
             </>
           }
         />
@@ -86,13 +119,41 @@ console.log(loading);
               <FormLayout />
             </>
           }
-          />
+        />
         <Route
-          path="/tables"
+          path="/tables/projects"
           element={
             <>
-              <PageTitle title="Tables" />
-              <Tables />
+              <PageTitle title="Projects Tables" />
+              <ProjectsTables />
+            </>
+          }
+        />
+        <Route
+          path="/tables/services"
+          element={
+            <>
+              <PageTitle title="Setvices Tables" />
+              <ServicesTable />
+            </>
+          }
+        />
+
+        <Route
+          path="/tables/blogs"
+          element={
+            <>
+              <PageTitle title="Blogs Tables" />
+              <BlogsTable />
+            </>
+          }
+        />
+        <Route
+          path="/tables/tasks"
+          element={
+            <>
+              <PageTitle title="Tasks Tables" />
+              <TasksTable />
             </>
           }
         />
@@ -104,7 +165,7 @@ console.log(loading);
               <Settings />
             </>
           }
-          />
+        />
         <Route
           path="/chart"
           element={
@@ -113,7 +174,7 @@ console.log(loading);
               <Chart />
             </>
           }
-          />
+        />
         <Route
           path="/ui/alerts"
           element={
@@ -122,7 +183,7 @@ console.log(loading);
               <Alerts />
             </>
           }
-          />
+        />
         <Route
           path="/ui/buttons"
           element={
@@ -131,7 +192,7 @@ console.log(loading);
               <Buttons />
             </>
           }
-          />
+        />
         <Route
           path="/auth/signin"
           element={
@@ -140,7 +201,7 @@ console.log(loading);
               <SignIn />
             </>
           }
-          />
+        />
         <Route
           path="/auth/signup"
           element={
@@ -149,9 +210,8 @@ console.log(loading);
               <SignUp />
             </>
           }
-          />
+        />
       </Routes>
-    
     </div>
   );
 }
