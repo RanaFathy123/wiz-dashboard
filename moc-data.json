@@ -1,0 +1,56 @@
+{
+    "featureId":"21321312",
+    "featureName":"إدارة المشاريع",
+    "featureHeroSection": {
+        "heroTitle":"حوّل أفكارك إلى مشاريع ناجحة",
+        "heroSubtitle":"مع ويزفريلانس، ستحصل على خدمة إدارة مشاريع متكاملة تُساعدك على تحقيق أهدافك بكفاءة وفعالية!",
+        "heroImage":"https://www.figma.com/design/BHDywF46y2kLT90LAbsJgq/Wiz--p?node-id=80-4565&t=GkfAtSkdzXA26s1I-4"
+    },
+    "featureBodySection":{  
+        "bodyTitle":"مميزات خدمة إدارة المشاريع من ويزفريلانس",
+        "featureBulletPoints": [
+        {
+            "bulletPointTitle":"تنظيم فعّال للمشاريع",
+            "bulletPointDescription":"نُنظم جميع جوانب المشروع ونُنسّقها بذكاء، ونُراقب تقدّم العمل بدقة لضمان سير الأمور بسلاسة"
+        },
+        {
+            "bulletPointTitle":"",
+            "bulletPointDescription":""
+        }
+    ]
+    },
+    "previousWorkImages":[
+        {
+            "image":"url"
+        },
+        {
+            "image":"url"
+        },
+        {
+            "image":"url"
+        }
+    ]
+    ,
+    "featureFooterSection": {
+        "footerTitle":"تُركز خدمة إدارة المشاريع في ويزفريلانس على إدارة المشاريع التقنية، والتي تتمثل في",
+        "footerBulletPoints": [
+        {
+            "bulletPointTitle":"إدارة مواقع الويب",
+            "bulletPointDescription":"توفير خدمات إدارة المشاريع لمواقع الويب، بدءًا من تصميم وبرمجة المواقع، وصولاً إلى إنشاء المحتوى",
+            "bulletPointImage":"url"
+        },
+        {
+            "bulletPointTitle":"",
+            "bulletPointDescription":"",
+            "bulletPointImage":""
+        },
+        {
+            "bulletPointTitle":"",
+            "bulletPointDescription":"",
+            "bulletPointImage":""
+        }
+    ]
+    }
+
+
+}
