@@ -16,9 +16,24 @@ const ServiceForm = () => {
     imageAlt: "",
     featureServiceName: "",
   });
-  const [tasksInputValue, setTasksInputValue] = useState([{ task: "" }]);
+  const [tasksInputValue, setTasksInputValue] = useState([
+    {
+      bulletPointTitle: "",
+      bulletPointDescription: "",
+      bulletPointImage: "",
+      imageAlt: "",
+    },
+  ]);
+  const [serviceData, setServiceData] = useState({
+    serviceTitleName: "",
+  });
   const [serviceInput, setServiceInput] = useState([
-    { bulletPointTitle: "", bulletPointDescription: "" },
+    {
+      bulletPointTitle: "",
+      bulletPointDescription: "",
+      bulletPointImage2: "",
+      imageAlt: "",
+    },
   ]);
   const handleAddFeaturesInputs = () => {
     setFeaturesInputValue([
@@ -38,8 +53,23 @@ const ServiceForm = () => {
       setFeaturesInputValue(filteredInputs);
     }
   };
+  const handleFeatureInputChange = (index, field, value) => {
+    const updatedFeatures = featuresInputValue.map((feature, i) =>
+      i === index ? { ...feature, [field]: value } : feature
+    );
+
+    setFeaturesInputValue(updatedFeatures);
+  };
   const handleAddTask = () => {
-    setTasksInputValue([...tasksInputValue, { task: "" }]);
+    setTasksInputValue([
+      ...tasksInputValue,
+      {
+        bulletPointTitle: "",
+        bulletPointDescription: "",
+        bulletPointImage: "",
+        imageAlt: "",
+      },
+    ]);
   };
   const handleDeleteTask = (index) => {
     const filteredInputs = tasksInputValue.filter((input, inputIndex) => {
@@ -49,8 +79,22 @@ const ServiceForm = () => {
       setTasksInputValue(filteredInputs);
     }
   };
+  const handleTaskInputChange = (index, field, value) => {
+    const updatedFeatures = tasksInputValue.map((feature, i) =>
+      i === index ? { ...feature, [field]: value } : feature
+    );
+    setTasksInputValue(updatedFeatures);
+  };
   const handleAddService = () => {
-    setServiceInput([...serviceInput, { service: "" }]);
+    setServiceInput([
+      ...serviceInput,
+      {
+        bulletPointTitle: "",
+        bulletPointDescription: "",
+        bulletPointImage2: "",
+        imageAlt: "",
+      },
+    ]);
   };
   const handleDeleteService = (index) => {
     const filteredInputs = serviceInput.filter((input, inputIndex) => {
@@ -60,13 +104,11 @@ const ServiceForm = () => {
       setServiceInput(filteredInputs);
     }
   };
-
-  const handleInputChange = (index, field, value) => {
-    const updatedFeatures = featuresInputValue.map((feature, i) =>
+  const handleServiceInputChange = (index, field, value) => {
+    const updatedFeatures = serviceInput.map((feature, i) =>
       i === index ? { ...feature, [field]: value } : feature
     );
-
-    setFeaturesInputValue(updatedFeatures);
+    setServiceInput(updatedFeatures);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,34 +127,10 @@ const ServiceForm = () => {
           bodySectionTitle: featureData.featureServiceName,
           featureBodyBulletPoints: featuresInputValue,
         },
-        previousWorkImages: [
-          {
-            image: "https://example.com/previous-work1.jpg",
-            workLink: "https://example.com",
-            imageAlt: "Work img",
-          },
-          {
-            image: "https://example.com/previous-work2.jpg",
-            workLink: "https://example.com",
-            imageAlt: "Work img",
-          },
-        ],
+        previousWorkImages: tasksInputValue,
         featureFooterSection: {
-          footerSectionTitle: "Conclusion of the Feature",
-          footerSectionBulletPoints: [
-            {
-              bulletPointTitle: "Footer Point One",
-              bulletPointDescription: "Description for footer point one.",
-              bulletPointImage: "https://example.com/previous-work2.jpg",
-              imageAlt: "task img",
-            },
-            {
-              bulletPointTitle: "Footer Point Two",
-              bulletPointDescription: "Description for footer point two.",
-              bulletPointImage: "https://example.com/previous-work2.jpg",
-              imageAlt: "task img",
-            },
-          ],
+          footerSectionTitle: serviceData.serviceTitleName,
+          footerSectionBulletPoints: serviceInput,
         },
       },
     });
@@ -279,7 +297,7 @@ const ServiceForm = () => {
                           placeholder={`اسم الميزة ${index + 1}`}
                           className="w-full mb-3 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           onChange={(e) =>
-                            handleInputChange(
+                            handleFeatureInputChange(
                               index,
                               "bulletPointTitle",
                               e.target.value
@@ -300,7 +318,7 @@ const ServiceForm = () => {
                         placeholder={`وصف الميزة ${index + 1}`}
                         value={featuresInput.bulletPointDescription}
                         onChange={(e) =>
-                          handleInputChange(
+                          handleFeatureInputChange(
                             index,
                             "bulletPointDescription",
                             e.target.value
@@ -322,8 +340,16 @@ const ServiceForm = () => {
                     <div className="flex items-center gap-4">
                       <input
                         type="text"
+                        value={taskInput.bulletPointTitle}
                         placeholder={`اسم العمل ${index + 1}`}
                         className="w-full mb-3 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                        onChange={(e) =>
+                          handleTaskInputChange(
+                            index,
+                            "bulletPointTitle",
+                            e.target.value
+                          )
+                        }
                       />
                       <button
                         onClick={() => handleDeleteTask(index)}
@@ -334,7 +360,7 @@ const ServiceForm = () => {
                     </div>
                     <div className="flex items-center justify-center w-full">
                       <label
-                        htmlFor="dropzone-file"
+                        htmlFor={`file-${index}`}
                         className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                       >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -364,25 +390,62 @@ const ServiceForm = () => {
                           </p>
                         </div>
                         <input
-                          id="dropzone-file"
+                          id={`file-${index}`}
                           type="file"
                           className="hidden"
+                          value={taskInput.bulletPointImage}
+                          onChange={(e) =>
+                            handleTaskInputChange(
+                              index,
+                              "bulletPointImage",
+                              e.target.value
+                            )
+                          }
                         />
                       </label>
                     </div>
                     <input
                       type="text"
                       placeholder={`لينك العمل ${index + 1}`}
+                      value={taskInput.bulletPointDescription}
                       className="w-full my-2 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      onChange={(e) =>
+                        handleTaskInputChange(
+                          index,
+                          "bulletPointDescription",
+                          e.target.value
+                        )
+                      }
                     />
                     <input
                       type="text"
                       placeholder={`alt ${index + 1}`}
+                      value={taskInput.imageAlt}
                       className="w-full my-2 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      onChange={(e) =>
+                        handleTaskInputChange(index, "imageAlt", e.target.value)
+                      }
                     />
                   </div>
                 ))}
                 <h1 className="text-[2rem] mt-3">الخدمات</h1>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                    اسم الخدمة
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="اسم الخدمة"
+                    value={serviceData.serviceTitleName}
+                    className="w-full rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    onChange={(e) =>
+                      setServiceData({
+                        ...serviceData,
+                        serviceTitleName: e.target.value,
+                      })
+                    }
+                  />
+                </div>
                 <button
                   className="mt-4 w-full rounded-lg bg-primary py-2 px-4 text-white transition-all duration-200 hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
                   onClick={handleAddService}
@@ -395,7 +458,15 @@ const ServiceForm = () => {
                       <input
                         type="text"
                         placeholder={`عنوان الخدمة ${index + 1}`}
+                        value={serviceInput.bulletPointTitle}
                         className="w-full mb-3 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                        onChange={(e) =>
+                          handleServiceInputChange(
+                            index,
+                            "bulletPointTitle",
+                            e.target.value
+                          )
+                        }
                       />
                       <button
                         onClick={() => handleDeleteService(index)}
@@ -407,17 +478,33 @@ const ServiceForm = () => {
                     <textarea
                       id="message"
                       rows="4"
+                      value={serviceInput.bulletPointDescription}
                       className="w-full rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                       placeholder="وصف الخدمة"
+                      onChange={(e) =>
+                        handleServiceInputChange(
+                          index,
+                          "bulletPointDescription",
+                          e.target.value
+                        )
+                      }
                     ></textarea>
                     <input
                       type="text"
                       placeholder={`alt ${index + 1}`}
+                      value={serviceInput.imageAlt}
                       className="w-full my-2 rounded-lg border-2 border-stroke bg-transparent py-2 px-4 text-black outline-none transition-all duration-200 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-gray-200 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      onChange={(e) =>
+                        handleServiceInputChange(
+                          index,
+                          "imageAlt",
+                          e.target.value
+                        )
+                      }
                     />
                     <div className="flex items-center justify-center w-full">
                       <label
-                        htmlFor="dropzone-file"
+                        htmlFor={`${index}`}
                         className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                       >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -447,9 +534,17 @@ const ServiceForm = () => {
                           </p>
                         </div>
                         <input
-                          id="dropzone-file"
+                          id={`${index}`}
                           type="file"
+                          value={serviceInput.bulletPointImage2}
                           className="hidden"
+                          onChange={(e) =>
+                            handleServiceInputChange(
+                              index,
+                              "bulletPointImage2",
+                              e.target.value
+                            )
+                          }
                         />
                       </label>
                     </div>
@@ -457,7 +552,7 @@ const ServiceForm = () => {
                 ))}
                 <button
                   type="submit"
-                  className="mt-4 w-full rounded-lg bg-primary py-2 px-4 text-white transition-all duration-200 hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+                  className="mt-4 w-full rounded-lg bg-primary py-2 px-4 font-extrabold text-xl text-white transition-all duration-200 hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
                 >
                   اضافة
                 </button>

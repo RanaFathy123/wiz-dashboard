@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 
 const ServicesTableDesign = () => {
   const [serviceData, setServiceData] = useState([]);
+
   const getSerivceData = async () => {
     try {
       const response = await axios({
@@ -12,9 +13,32 @@ const ServicesTableDesign = () => {
       });
       const serviceData = response.data;
       setServiceData(serviceData);
+  
     } catch (error) {
       console.log(error);
     }
+  };
+  const deleteService = (obj) => {
+    Swal.fire({
+      title: `Do you want to save the changes ${obj.featureName}`,
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: `Don't Delete`,
+      icon: "question",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios({
+          method: "delete",
+          url: `https://wiz-deploy.onrender.com/features/${obj._id}`,
+        })
+          .then((response) => response.data)
+          .catch((err) => console.log(err));
+   getSerivceData()
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
   useEffect(() => {
     getSerivceData();
@@ -102,7 +126,10 @@ const ServicesTableDesign = () => {
                         />
                       </svg>
                     </button>
-                    <button className="hover:text-primary">
+                    <button
+                      className="hover:text-primary"
+                      onClick={() => deleteService(service)}
+                    >
                       <svg
                         className="fill-current"
                         width="18"
